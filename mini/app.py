@@ -15,8 +15,8 @@ def get_session_id():
     return session_id
 
 with st.sidebar:
-    gemini_api_key = st.text_input("Gemini API Key", key="gemini_api_key", type="password", value="AIzaSyABPBa3kBpdD8TtNOBJMfv8R7Uf9j82J3s")
-    serper_api_key = st.text_input("Serper API Key", key="serper_api_key", type="password", value="3fbed0fe9a21b62bc1cfba89cdd54e7e55428e2a")
+    gemini_api_key = st.text_input("Gemini API Key", key="gemini_api_key", type="password", value="")
+    serper_api_key = st.text_input("Serper API Key", key="serper_api_key", type="password", value="")
 
 st.sidebar.info(
     """
