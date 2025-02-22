@@ -1,0 +1,19 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check requirements
+        name: check requirements
+        entry: sh scripts/check_requirements.sh
+        language: system
+        always_run: true
+        pass_filenames: false
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    - id: black
