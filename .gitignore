@@ -1,0 +1,4 @@
+*.pyc
+*.ipynb
+.env
+memory.db
