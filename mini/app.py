@@ -1,7 +1,13 @@
-import os
+import os, sys
 import streamlit as st
 from uuid import uuid4
+
+path_this = os.path.dirname(os.path.abspath(__file__))
+path_project = os.path.abspath(os.path.join(path_this, ".."))
+sys.path.append(path_project)
+
 from mini.agent.agent import Agent
+
 
 @st.cache_resource
 def get_agent(
@@ -25,6 +31,10 @@ st.sidebar.info(
     """
 )
 
+if not gemini_api_key or not serper_api_key:
+    st.info("Please add your Gemini API key and Serper API key to continue.")
+    st.stop()
+    
 agent = get_agent(
     gemini_api_key=gemini_api_key,
     serper_api_key=serper_api_key
@@ -43,9 +53,6 @@ for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():
-    if not os.getenv("GEMINI_API_KEY") or not os.getenv("SERPER_API_KEY"):
-        st.info("Please add your Groq API key and Serper API key to continue.")
-        st.stop()
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
